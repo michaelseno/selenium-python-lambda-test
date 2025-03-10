@@ -1,14 +1,13 @@
-AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   SeleniumLambda:
     Type: AWS::Serverless::Function
     Properties:
       Handler: lambda_function.lambda_handler
-      Runtime: python3.11
-      CodeUri: ./package
-      Timeout: 30
+      Runtime: python3.9
       MemorySize: 1024
+      Timeout: 120
+      Layers:
+        - arn:aws:lambda:us-east-1:764866452798:layer:chrome-aws-lambda:10
       Environment:
         Variables:
-          SELENIUM_HEADLESS: "true"
-          SELENIUM_TEST_URL: "http://aws-personal-portfolio-bucket.s3-website-us-east-1.amazonaws.com"
+          AWS_SAM_LOCAL: "true"

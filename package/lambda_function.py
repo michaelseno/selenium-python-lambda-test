@@ -10,7 +10,7 @@ from pages.portfolio_page import PortfolioPage
 logs_client = boto3.client("logs")
 
 
-def lambda_handler():
+def lambda_handler(event, context):
     # Configure Headless Chrome
     chrome_options = Options()
     chrome_options.binary_location = "/opt/chrome"
@@ -18,6 +18,7 @@ def lambda_handler():
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    print(event, context)
 
     # Start WebDriver
     driver = webdriver.Chrome(options=chrome_options)
